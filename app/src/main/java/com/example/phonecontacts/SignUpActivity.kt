@@ -35,19 +35,19 @@ class SignUpActivity : AppCompatActivity() {
         signUpBtn = findViewById(R.id.signUpButton)
         signInBtn = findViewById(R.id.signInButton)
 
-        userViewModelAdapter = ViewModelProvider(this, UserViewModelAdapter.Factory(applicationContext)).get(UserViewModelAdapter::class.java)
+        userViewModelAdapter = ViewModelProvider(this, UserViewModelAdapter.Factory(baseContext)).get(UserViewModelAdapter::class.java)
 
 
         signUpBtn.setOnClickListener {
 
             userViewModelAdapter!!.createUser(emailEditText!!.text.toString(), passwordEditText!!.text.toString())
-            getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).edit()
-                    .putBoolean("signup", false).apply()
+//            getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).edit()
+//                    .putBoolean("signup", false).apply()
             if (emailEditText.text.isNullOrBlank() || passwordEditText.text.isNullOrBlank()){
                 Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
             }
             else{
-                Toast.makeText(baseContext, "Successfully Created An Account, Now sign In!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Successfully Created An Account, Now sign In!", Toast.LENGTH_LONG).show()
                 val intent = Intent(this, LoginActivity::class.java)
                 this.startActivity(intent)
             }

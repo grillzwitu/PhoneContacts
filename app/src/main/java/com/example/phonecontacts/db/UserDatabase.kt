@@ -12,25 +12,42 @@ import com.example.phonecontacts.db.entities.UserEntity
     version = 1
 )
 
-abstract class UserDatabase: RoomDatabase() {
 
+abstract class UserDatabase : RoomDatabase() {
     abstract fun userDao() : UserDao
 
     companion object {
-        private var INSTANCE: UserDatabase? = null
+        @Volatile private var instance: UserDatabase? = null
+        private val LOCK = Any()
 
-        fun getAppDatabase(context: Context): UserDatabase {
-            if (INSTANCE == null) {
-                INSTANCE = Room.databaseBuilder(context.applicationContext, UserDatabase::class.java, "user-database").allowMainThreadQueries().build()
-
-            }
-
-            return INSTANCE!!
-
+        operator fun invoke(context: Context) = instance ?: synchronized(LOCK){
+            instance ?: buildDatabase(context)
         }
 
-        fun destroyInstance() {
-            INSTANCE = null
-        }
+        private fun buildDatabase(context: Context) = Room.databaseBuilder(context, UserDatabase::class.java, "user.db").allowMainThreadQueries().build()
     }
 }
+
+
+//abstract class UserDatabase: RoomDatabase() {
+//
+//    abstract fun userDao() : UserDao
+//
+//    companion object {
+//        private var INSTANCE: UserDatabase? = null
+//
+//        fun getAppDatabase(context: Context): UserDatabase {
+//            if (INSTANCE == null) {
+//                INSTANCE = Room.databaseBuilder(context.applicationContext, UserDatabase::class.java, "user-database").allowMainThreadQueries().build()
+//
+//            }
+//
+//            return INSTANCE!!
+//
+//        }
+//
+//        fun destroyInstance() {
+//            INSTANCE = null
+//        }
+//    }
+//}

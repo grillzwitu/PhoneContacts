@@ -25,18 +25,6 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(
         holder.bindItem(category)
 
         holder.itemView.setOnClickListener {
-            if (position == 0){
-                Toast.makeText(holder.itemView.context, "You just clicked Family", Toast.LENGTH_LONG).show()
-            }
-            if (position == 1){
-                Toast.makeText(holder.itemView.context, "You just clicked Friends", Toast.LENGTH_LONG).show()
-            }
-            if (position == 2){
-                Toast.makeText(holder.itemView.context, "You just clicked Work", Toast.LENGTH_LONG).show()
-            }
-            if (position == 3){
-                Toast.makeText(holder.itemView.context, "You just clicked School", Toast.LENGTH_LONG).show()
-            }
 
             val model = categories[position]
 

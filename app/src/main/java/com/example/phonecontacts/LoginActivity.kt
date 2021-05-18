@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
         emailEditText = findViewById(R.id.loginEmailEditText)
         passwordEditText = findViewById(R.id.loginPasswordEditText)
         loginBtn = findViewById(R.id.loginButton)
-        userViewModelAdapter = ViewModelProvider(this, UserViewModelAdapter.Factory(applicationContext)).get(UserViewModelAdapter::class.java)
+        userViewModelAdapter = ViewModelProvider(this, UserViewModelAdapter.Factory(baseContext)).get(UserViewModelAdapter::class.java)
 
         loginBtn.setOnClickListener {
             if (emailEditText.text.isNullOrBlank() || passwordEditText.text.isNullOrBlank()){

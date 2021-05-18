@@ -8,7 +8,7 @@ import com.example.phonecontacts.db.UserRepository
 
 class UserViewModelAdapter(context: Context) : ViewModel() {
     private val userRepository: UserRepository =
-        UserRepository.getInstance(UserDatabase.getAppDatabase(context).userDao())
+        UserRepository.getInstance(UserDatabase.invoke(context).userDao())
 
     internal fun createUser(email: String, password: String) {
         userRepository.insertUser(email, password)
@@ -25,6 +25,5 @@ class UserViewModelAdapter(context: Context) : ViewModel() {
             return UserViewModelAdapter(ctxt) as T
         }
     }
-
 
 }
