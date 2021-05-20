@@ -28,6 +28,7 @@ abstract class UserDatabase : RoomDatabase() {
     }
 }
 
+//Alternatively
 
 //abstract class UserDatabase: RoomDatabase() {
 //
