@@ -22,4 +22,4 @@ It is an app for storing phone contacts that requires it's user to register befo
 ![Alt](/screenshots/fam-cat-first-input.png "Family Category Detail View")
 ![Alt](/screenshots/fam-cat-second-input.png "More Family Detail Category View")
 ![Alt](/screenshots/fam-cat-contact-list.png "More Family Category Detail View, 2 contacts saved")
-![Alt](/screenshots/categories.png "Work Category View")
+![Alt](/screenshots/work-cat-input.png "Work Category View")
