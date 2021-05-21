@@ -2,6 +2,17 @@
 
 This project is created to demonstrate an implementation of __Room Database__ in android studio using __kotlin__ programming language.
 It is an app for storing phone contacts that requires it's user to register before use.
+The functionalities of the app include:
+
+- [x] Sign up and account creation with Room database.
+
+- [x] Login and user verification with Room database.
+
+- [x] Prevention of double entry or registration of the same account into the database.
+
+- [x] Contact categories
+
+- [x] Basic contact saving without a database.
 
 ## Description
 

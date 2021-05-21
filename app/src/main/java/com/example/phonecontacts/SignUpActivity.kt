@@ -51,10 +51,15 @@ class SignUpActivity : AppCompatActivity() {
             }
             else{
                 val userAccount = UserEntity(0, email = emailEditText.text.toString(), password = passwordEditText.text.toString())
-                userRepository.insertUsers(userAccount)
-                Toast.makeText(this, "Successfully Created An Account, Now sign In!", Toast.LENGTH_LONG).show()
-                val intent = Intent(this, LoginActivity::class.java)
-                this.startActivity(intent)
+                if (userRepository.isExisting(userAccount.email)) {
+                    Toast.makeText(this, "You already signed up. Please sign in", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    userRepository.insertUsers(userAccount)
+                    Toast.makeText(this, "Successfully Created An Account, Now sign In!", Toast.LENGTH_LONG).show()
+                    val intent = Intent(this, LoginActivity::class.java)
+                    this.startActivity(intent)
+                }
             }
 
         }

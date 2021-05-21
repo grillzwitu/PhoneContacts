@@ -26,6 +26,11 @@ class UserRepository(context: Context) {
         }
     }
 
+    fun isExisting(email: String): Boolean {
+
+        return email == db.userDao().getUserData(email).email
+    }
+
     fun insertUsers(userEntity: UserEntity){
         GlobalScope.launch{
             withContext(Dispatchers.IO){
