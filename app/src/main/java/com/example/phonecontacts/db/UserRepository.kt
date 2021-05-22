@@ -27,8 +27,9 @@ class UserRepository(context: Context) {
     }
 
     fun isExisting(email: String): Boolean {
+        val existingUser: UserEntity? = db.userDao().getUserData(email)
 
-        return email == db.userDao().getUserData(email).email
+        return existingUser != null
     }
 
     fun insertUsers(userEntity: UserEntity){

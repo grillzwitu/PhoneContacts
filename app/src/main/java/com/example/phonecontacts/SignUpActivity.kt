@@ -18,7 +18,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var passwordEditText: TextInputEditText
     private lateinit var signUpBtn: Button
     private lateinit var signInBtn: Button
-    private lateinit var userRepository: UserRepository
+    private var userRepository: UserRepository? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,20 +46,19 @@ class SignUpActivity : AppCompatActivity() {
 //            userViewModelAdapter.createUser(emailEditText.text.toString(), passwordEditText.text.toString())
 //            getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).edit()
 //                    .putBoolean("signup", false).apply()
+            val userAccount = UserEntity(0, email = emailEditText.text.toString(), password = passwordEditText.text.toString())
+
             if (emailEditText.text.isNullOrBlank() || passwordEditText.text.isNullOrBlank()){
                 Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
             }
-            else{
-                val userAccount = UserEntity(0, email = emailEditText.text.toString(), password = passwordEditText.text.toString())
-                if (userRepository.isExisting(userAccount.email)) {
+            else if (userRepository?.isExisting(userAccount.email) == true) {
                     Toast.makeText(this, "You already signed up. Please sign in", Toast.LENGTH_SHORT).show()
                 }
-                else{
-                    userRepository.insertUsers(userAccount)
-                    Toast.makeText(this, "Successfully Created An Account, Now sign In!", Toast.LENGTH_LONG).show()
-                    val intent = Intent(this, LoginActivity::class.java)
-                    this.startActivity(intent)
-                }
+            else{
+                userRepository?.insertUsers(userAccount)
+                Toast.makeText(this, "Successfully Created An Account, Now sign In!", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, LoginActivity::class.java)
+                this.startActivity(intent)
             }
 
         }
