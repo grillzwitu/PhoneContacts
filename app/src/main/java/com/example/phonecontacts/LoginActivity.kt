@@ -3,7 +3,6 @@ package com.example.phonecontacts
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
@@ -49,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
             }
             else{
-                val isValid: Boolean = userRepository?.isValidUser(emailEditText.text.toString(), passwordEditText.text.toString()) == true
+                val isValid: Boolean = userRepository?.isValidUser(emailEditText.text.toString().trim(), passwordEditText.text.toString().trim()) == true
                 if (isValid) {
                     Toast.makeText(baseContext, "Welcome to Contacts", Toast.LENGTH_LONG).show()
                     val intent = Intent(this, CategoryActivity::class.java)

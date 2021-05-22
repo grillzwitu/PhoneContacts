@@ -1,10 +1,10 @@
 package com.example.phonecontacts.adapter
 
-import android.content.Context
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.example.phonecontacts.db.UserDatabase
-import com.example.phonecontacts.db.UserRepository
+//import android.content.Context
+//import androidx.lifecycle.ViewModel
+//import androidx.lifecycle.ViewModelProvider
+//import com.example.phonecontacts.db.UserDatabase
+//import com.example.phonecontacts.db.UserRepository
 
 // Works but not a must use
 

@@ -3,7 +3,9 @@ package com.example.phonecontacts
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 //import androidx.lifecycle.ViewModelProvider
 //import com.example.phonecontacts.adapter.UserViewModelAdapter
@@ -43,13 +45,13 @@ class SignUpActivity : AppCompatActivity() {
 
         signUpBtn.setOnClickListener {
 
-//            userViewModelAdapter.createUser(emailEditText.text.toString(), passwordEditText.text.toString())
-//            getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).edit()
-//                    .putBoolean("signup", false).apply()
-            val userAccount = UserEntity(0, email = emailEditText.text.toString(), password = passwordEditText.text.toString())
+            val userAccount = UserEntity(0, email = emailEditText.text.toString().trim(), password = passwordEditText.text.toString().trim())
 
             if (emailEditText.text.isNullOrBlank() || passwordEditText.text.isNullOrBlank()){
                 Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
+            }
+            else if (!validEmail(emailEditText)){
+                Toast.makeText(this, "Account must be an email", Toast.LENGTH_SHORT).show()
             }
             else if (userRepository?.isExisting(userAccount.email) == true) {
                     Toast.makeText(this, "You already signed up. Please sign in", Toast.LENGTH_SHORT).show()
@@ -70,6 +72,11 @@ class SignUpActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    private fun validEmail(email: EditText): Boolean{
+        val emailInput: String = email.text.toString().trim()
+        return emailInput.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()
     }
 
 }

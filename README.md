@@ -8,6 +8,8 @@ The functionalities of the app include:
 
 - [x] Login and user verification with Room database.
 
+- [x] User account must be an email
+
 - [x] Prevention of double entry or registration of the same account into the database.
 
 - [x] Contact categories

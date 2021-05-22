@@ -2,8 +2,8 @@ package com.example.phonecontacts.db
 
 
 import android.content.Context
-import androidx.lifecycle.LiveData
-import com.example.phonecontacts.db.dao.UserDao
+//import androidx.lifecycle.LiveData
+//import com.example.phonecontacts.db.dao.UserDao
 import com.example.phonecontacts.db.entities.UserEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 class UserRepository(context: Context) {
     private val db = UserDatabase.invoke(context)
 
-//    fun getAllNotes() : LiveData<List<UserEntity>> = db.userDao().selectAllUsers()
+//    fun getAllUsers() : LiveData<List<UserEntity>> = db.userDao().selectAllUsers()
 
     fun isValidUser(email: String, password: String): Boolean {
         val validUser: UserEntity? = db.userDao().getUserData(email)
@@ -40,6 +40,9 @@ class UserRepository(context: Context) {
         }
     }
 }
+
+
+// An alternative Approach
 
 //class UserRepository(private val userDao: UserDao) {
 //
